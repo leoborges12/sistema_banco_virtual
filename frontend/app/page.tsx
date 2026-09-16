@@ -1,5 +1,16 @@
+import { FileText, FlaskConical, MapPinned, Newspaper, Stethoscope } from 'lucide-react';
+import Link from 'next/link';
 import { PortalFooter } from '@/components/layout/portal-footer';
 import { PortalHeader } from '@/components/layout/portal-header';
+import { portalAreas } from '@/data/portal-areas';
+
+const areaIcons = {
+  map: MapPinned,
+  exam: FlaskConical,
+  health: Stethoscope,
+  document: FileText,
+  news: Newspaper,
+};
 
 export default function Home() {
   return (
@@ -43,6 +54,27 @@ export default function Home() {
             </p>
           </aside>
         </article>
+
+        <section aria-labelledby="quick-access-title" className="border-t border-border bg-white">
+          <div className="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-16">
+            <h2 id="quick-access-title" className="text-3xl font-semibold tracking-tight">Acessos rápidos</h2>
+            <p className="mt-3 text-lg text-muted-foreground">Escolha uma área para consultar serviços e informações.</p>
+
+            <div className="mt-8 grid gap-3 md:grid-cols-2">
+              {portalAreas.map((area) => {
+                const Icon = areaIcons[area.icon];
+                return (
+                  <Link key={area.slug} href={`/${area.slug}`} className="group flex min-h-24 items-center gap-5 bg-cyan-700 px-5 py-4 text-white transition-colors hover:bg-cyan-800 focus-visible:bg-cyan-800">
+                    <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-white text-cyan-800 shadow-sm">
+                      <Icon className="h-8 w-8" strokeWidth={2} aria-hidden="true" />
+                    </span>
+                    <span className="text-lg font-semibold leading-6">{area.title}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
       </main>
       <PortalFooter />
     </div>
