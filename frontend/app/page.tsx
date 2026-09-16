@@ -34,7 +34,7 @@ export default function Home() {
             {portalAreas.map((area, index) => {
               const Icon = icons[area.icon];
               return <Link key={area.slug} href={`/${area.slug}`} className={`group flex min-h-64 flex-col bg-card p-7 transition-colors hover:bg-accent focus-visible:bg-accent ${index === 0 ? 'lg:col-span-2' : ''}`}>
-                <div className="flex items-start justify-between gap-4"><span className="grid h-12 w-12 place-items-center bg-secondary text-primary"><Icon className="h-6 w-6" aria-hidden="true" /></span><span className="text-sm font-semibold text-muted-foreground">0{index + 1}</span></div>
+                <div className="flex items-start justify-between gap-4"><span className="grid h-16 w-16 place-items-center bg-primary text-primary-foreground"><Icon className="h-8 w-8" strokeWidth={2.3} aria-hidden="true" /></span><span className="text-sm font-semibold text-muted-foreground">0{index + 1}</span></div>
                 <div className="mt-auto pt-8"><h3 className="text-2xl font-semibold tracking-tight">{area.title}</h3><p className="mt-3 max-w-xl leading-7 text-muted-foreground">{area.description}</p><span className="mt-5 inline-flex items-center gap-2 font-semibold text-primary">Acessar <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" /></span></div>
               </Link>;
             })}
