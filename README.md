@@ -102,6 +102,17 @@ cd frontend
 npm run build
 ```
 
+## Publicação na Vercel
+
+Ao importar o repositório na Vercel, configure:
+
+- **Root Directory:** `frontend`
+- **Framework Preset:** Next.js
+- **Install Command:** `npm install`
+- **Build Command:** `npm run build`
+
+O arquivo `frontend/vercel.json` mantém o preset e os comandos de build versionados. O frontend usa o runtime oficial do Next.js para preservar as rotas e os componentes interativos no ambiente da Vercel.
+
 ## Estrutura principal
 
 ```text
