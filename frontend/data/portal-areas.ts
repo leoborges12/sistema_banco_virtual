@@ -17,26 +17,14 @@ export interface PortalArea {
 
 export const portalAreas: PortalArea[] = [
   {
-    slug: 'mapeamento',
-    title: 'Mapeamento',
-    description: 'Descubra onde encontrar medicamentos e localize a ESF de referência a partir do seu endereço.',
-    introduction: 'Esta área reunirá ferramentas de localização para facilitar o acesso da população aos serviços de saúde disponíveis no território.',
+    slug: 'unidades-de-saude',
+    title: 'Unidades de Saúde',
+    description: 'Localize sua unidade de referência e consulte os locais de realização de exames.',
+    introduction: 'Reunimos informações sobre as unidades de saúde, equipes de Saúde da Família e locais de exames para facilitar o acesso aos serviços no município.',
     icon: 'map',
     topics: [
-      { title: 'Onde encontrar medicamentos', description: 'Consulte os pontos de atendimento previstos para retirada de medicamentos.', href: '/mapeamento/medicamentos' },
-      { title: 'Localizar a ESF pelo endereço', description: 'Informe um endereço para identificar a equipe de Saúde da Família de referência.', href: '/mapeamento/esf' },
-    ],
-  },
-  {
-    slug: 'locais-de-exames',
-    title: 'Locais de exames',
-    description: 'Consulte informações sobre locais e orientações para realização de exames.',
-    introduction: 'O conteúdo será organizado por tipo de exame, requisitos de atendimento e orientações necessárias antes do comparecimento ao serviço.',
-    icon: 'exam',
-    topics: [
-      { title: 'Locais de atendimento', description: 'Relação de unidades organizada por exame e região.' },
-      { title: 'Orientações para exames', description: 'Informações sobre preparo, documentos e encaminhamentos.' },
-      { title: 'Dúvidas frequentes', description: 'Respostas para questões comuns sobre o acesso aos exames.' },
+      { title: 'Localizar a ESF pelo endereço', description: 'Informe um endereço para identificar a equipe de Saúde da Família de referência.', href: '/unidades-de-saude/esf' },
+      { title: 'Locais de exames', description: 'Consulte em um só lugar as unidades, orientações e informações para realização de exames.' },
     ],
   },
   {

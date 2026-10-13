@@ -52,6 +52,31 @@ body {
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
+@keyframes header-photo-arrive {
+  from { opacity: 0; transform: scale(1.04); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes header-copy-arrive {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.header-photo {
+  animation: header-photo-arrive 900ms ease-out both;
+}
+
+.header-copy {
+  animation: header-copy-arrive 700ms ease-out 150ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-photo,
+  .header-copy {
+    animation: none;
+  }
+}
+
 :root {
   --background: oklch(0.985 0.008 235);
   --foreground: oklch(0.22 0.035 245);

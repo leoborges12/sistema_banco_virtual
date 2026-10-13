@@ -16,8 +16,8 @@ export function MappingServicePage({ title, description, steps }: MappingService
       <main>
         <section className="bg-primary text-primary-foreground">
           <div className="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-16">
-            <Link href="/mapeamento" className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-100 underline underline-offset-4">
-              <ArrowLeft className="h-4 w-4" /> Voltar ao mapeamento
+            <Link href="/unidades-de-saude" className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-100 underline underline-offset-4">
+              <ArrowLeft className="h-4 w-4" /> Voltar às unidades de saúde
             </Link>
             <div className="mt-9 flex items-start gap-5">
               <span className="grid h-16 w-16 shrink-0 place-items-center bg-cyan-700">
