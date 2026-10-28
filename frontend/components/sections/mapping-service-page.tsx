@@ -16,17 +16,17 @@ export function MappingServicePage({ title, description, steps }: MappingService
       <main>
         <section className="bg-primary text-primary-foreground">
           <div className="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-16">
-            <Link href="/unidades-de-saude" className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-100 underline underline-offset-4">
+            <Link href="/unidades-de-saude" className="inline-flex items-center gap-2 text-sm font-semibold text-white/90 underline underline-offset-4">
               <ArrowLeft className="h-4 w-4" /> Voltar às unidades de saúde
             </Link>
             <div className="mt-9 flex items-start gap-5">
-              <span className="grid h-16 w-16 shrink-0 place-items-center bg-cyan-700">
+              <span className="grid h-16 w-16 shrink-0 place-items-center bg-turquoise text-navy">
                 <MapPinned className="h-8 w-8" />
               </span>
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.17em] text-cyan-200">Serviço de localização</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.17em] text-white/80">Serviço de localização</p>
                 <h1 className="mt-2 text-4xl font-semibold tracking-tight sm:text-5xl">{title}</h1>
-                <p className="mt-5 max-w-3xl text-lg leading-8 text-blue-100">{description}</p>
+                <p className="mt-5 max-w-3xl text-lg leading-8 text-white/90">{description}</p>
               </div>
             </div>
           </div>
@@ -46,7 +46,7 @@ export function MappingServicePage({ title, description, steps }: MappingService
               </ol>
             </section>
 
-            <section className="border border-border bg-white p-7">
+            <section className="border border-border bg-ice p-7">
               <p className="text-sm font-semibold uppercase tracking-wider text-primary">Mapa interativo</p>
               <h2 className="mt-3 text-2xl font-semibold">Visualização das unidades em Itaqui/RS</h2>
               <p className="mt-4 leading-7 text-muted-foreground">Os pontos representados são amostras. Substitua pela base oficial quando disponível.</p>

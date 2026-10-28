@@ -1,9 +1,10 @@
-export type PortalAreaIcon = 'map' | 'exam' | 'health' | 'document' | 'news';
+export type PortalAreaIcon = 'map' | 'exam' | 'health' | 'document' | 'news' | 'links';
 
 export interface PortalTopic {
   title: string;
   description: string;
   href?: string;
+  external?: boolean;
 }
 
 export interface PortalArea {
@@ -61,6 +62,18 @@ export const portalAreas: PortalArea[] = [
       { title: 'Comunicados', description: 'Avisos importantes relacionados aos serviços de saúde.' },
       { title: 'Atualizações', description: 'Novidades sobre conteúdos e recursos do portal.' },
       { title: 'Agenda', description: 'Informações futuras sobre ações e atividades institucionais.' },
+    ],
+  },
+  {
+    slug: 'links-uteis',
+    title: 'Links Úteis',
+    description: 'Acesse portais oficiais com informações e serviços de saúde.',
+    introduction: 'Reunimos links de órgãos públicos para facilitar a consulta a informações confiáveis sobre saúde.',
+    icon: 'links',
+    topics: [
+      { title: 'Ministério da Saúde', description: 'Informações, campanhas e serviços nacionais de saúde.', href: 'https://www.gov.br/saude', external: true },
+      { title: 'Secretaria da Saúde do Rio Grande do Sul', description: 'Notícias e orientações da saúde no estado.', href: 'https://saude.rs.gov.br', external: true },
+      { title: 'Prefeitura de Itaqui', description: 'Serviços e informações municipais.', href: 'https://www.itaqui.rs.gov.br', external: true },
     ],
   },
 ];
