@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 
 type NewsItem = {
   id: string;
@@ -32,7 +33,7 @@ export default function NewsCarousel({ items }: { items: NewsItem[] }) {
             <div className="w-full h-full flex flex-col md:flex-row">
               <div className="md:w-2/5 h-44 md:h-72 relative">
                 {it.image ? (
-                  <img src={it.image} alt={it.title} className="w-full h-full object-cover" />
+                  <Image src={it.image} alt={it.title} fill sizes="(min-width: 768px) 40vw, 100vw" className="object-cover" />
                 ) : (
                   <div className="w-full h-full bg-ice" />
                 )}

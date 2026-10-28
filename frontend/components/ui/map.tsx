@@ -25,7 +25,6 @@ type UnitMarker = {
   info?: string;
 };
 const DEFAULT_ITAQUI_COORDS: [number, number] = [-29.1338, -56.5181];
-const DEFAULT_RS_COORDS: [number, number] = [-30.0346, -51.2177];
 
 export default function Map({ markers, center, zoom, height }: { markers?: UnitMarker[]; center?: [number, number]; zoom?: number; height?: string }) {
   const mapCenter = center ?? DEFAULT_ITAQUI_COORDS;
