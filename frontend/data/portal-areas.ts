@@ -1,9 +1,10 @@
-export type PortalAreaIcon = 'map' | 'exam' | 'health' | 'document' | 'news';
+export type PortalAreaIcon = 'map' | 'exam' | 'health' | 'document' | 'news' | 'links';
 
 export interface PortalTopic {
   title: string;
   description: string;
   href?: string;
+  external?: boolean;
 }
 
 export interface PortalArea {
@@ -17,26 +18,14 @@ export interface PortalArea {
 
 export const portalAreas: PortalArea[] = [
   {
-    slug: 'mapeamento',
-    title: 'Mapeamento',
-    description: 'Descubra onde encontrar medicamentos e localize a ESF de referência a partir do seu endereço.',
-    introduction: 'Esta área reunirá ferramentas de localização para facilitar o acesso da população aos serviços de saúde disponíveis no território.',
+    slug: 'unidades-de-saude',
+    title: 'Unidades de Saúde',
+    description: 'Localize sua unidade de referência e consulte os locais de realização de exames.',
+    introduction: 'Reunimos informações sobre as unidades de saúde, equipes de Saúde da Família e locais de exames para facilitar o acesso aos serviços no município.',
     icon: 'map',
     topics: [
-      { title: 'Onde encontrar medicamentos', description: 'Consulte os pontos de atendimento previstos para retirada de medicamentos.', href: '/mapeamento/medicamentos' },
-      { title: 'Localizar a ESF pelo endereço', description: 'Informe um endereço para identificar a equipe de Saúde da Família de referência.', href: '/mapeamento/esf' },
-    ],
-  },
-  {
-    slug: 'locais-de-exames',
-    title: 'Locais de exames',
-    description: 'Consulte informações sobre locais e orientações para realização de exames.',
-    introduction: 'O conteúdo será organizado por tipo de exame, requisitos de atendimento e orientações necessárias antes do comparecimento ao serviço.',
-    icon: 'exam',
-    topics: [
-      { title: 'Locais de atendimento', description: 'Relação de unidades organizada por exame e região.' },
-      { title: 'Orientações para exames', description: 'Informações sobre preparo, documentos e encaminhamentos.' },
-      { title: 'Dúvidas frequentes', description: 'Respostas para questões comuns sobre o acesso aos exames.' },
+      { title: 'Localizar a ESF pelo endereço', description: 'Informe um endereço para identificar a equipe de Saúde da Família de referência.', href: '/unidades-de-saude/esf' },
+      { title: 'Locais de exames', description: 'Consulte em um só lugar as unidades, orientações e informações para realização de exames.' },
     ],
   },
   {
@@ -73,6 +62,18 @@ export const portalAreas: PortalArea[] = [
       { title: 'Comunicados', description: 'Avisos importantes relacionados aos serviços de saúde.' },
       { title: 'Atualizações', description: 'Novidades sobre conteúdos e recursos do portal.' },
       { title: 'Agenda', description: 'Informações futuras sobre ações e atividades institucionais.' },
+    ],
+  },
+  {
+    slug: 'links-uteis',
+    title: 'Links Úteis',
+    description: 'Acesse portais oficiais com informações e serviços de saúde.',
+    introduction: 'Reunimos links de órgãos públicos para facilitar a consulta a informações confiáveis sobre saúde.',
+    icon: 'links',
+    topics: [
+      { title: 'Ministério da Saúde', description: 'Informações, campanhas e serviços nacionais de saúde.', href: 'https://www.gov.br/saude', external: true },
+      { title: 'Secretaria da Saúde do Rio Grande do Sul', description: 'Notícias e orientações da saúde no estado.', href: 'https://saude.rs.gov.br', external: true },
+      { title: 'Prefeitura de Itaqui', description: 'Serviços e informações municipais.', href: 'https://www.itaqui.rs.gov.br', external: true },
     ],
   },
 ];

@@ -34,7 +34,7 @@ export default function NewsCarousel({ items }: { items: NewsItem[] }) {
                 {it.image ? (
                   <img src={it.image} alt={it.title} className="w-full h-full object-cover" />
                 ) : (
-                  <div className="w-full h-full bg-slate-300" />
+                  <div className="w-full h-full bg-ice" />
                 )}
               </div>
 
@@ -62,7 +62,7 @@ export default function NewsCarousel({ items }: { items: NewsItem[] }) {
               key={i}
               onClick={() => setIndex(i)}
               aria-label={`Ir para notícia ${i + 1}`}
-              className={`h-3 w-6 rounded ${i === index ? 'bg-cyan-700' : 'bg-white/70'}`}
+              className={`h-3 w-6 rounded ${i === index ? 'bg-turquoise' : 'bg-white/70'}`}
             />
           ))}
         </div>
