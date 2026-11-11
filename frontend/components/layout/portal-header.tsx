@@ -1,10 +1,11 @@
-import { LogIn, Menu, Plus } from 'lucide-react';
+import { LogIn, Menu } from 'lucide-react';
 import Link from 'next/link';
+import { PortalLogo } from './portal-logo';
 
 const navigation = [
   { label: 'Início', href: '/' },
-  { label: 'Unidades de Saúde', href: '/unidades-de-saude' },
-  { label: 'Informações de saúde', href: '/informacoes-de-saude' },
+  { label: 'Unidades', href: '/unidades-de-saude' },
+  { label: 'Informações', href: '/informacoes-de-saude' },
   { label: 'Documentação', href: '/documentacao' },
   { label: 'Notícias', href: '/noticias' },
   { label: 'Links Úteis', href: '/links-uteis' },
@@ -12,37 +13,5 @@ const navigation = [
 ];
 
 export function PortalHeader() {
-  return (
-    <header className="bg-navy text-white">
-      <div className="mx-auto flex min-h-16 max-w-7xl items-center gap-5 px-5 md:px-8">
-        <Link href="/" className="flex shrink-0 items-center gap-3 font-semibold" aria-label="Portal de Saúde — página inicial">
-          <span className="grid h-11 w-11 place-items-center bg-turquoise text-navy"><Plus className="h-7 w-7" strokeWidth={3} aria-hidden="true" /></span>
-          <span className="flex flex-col">
-            <span className="text-base leading-tight sm:text-lg">Portal de Saúde</span>
-            <span className="mt-1 text-[0.65rem] font-medium uppercase tracking-[0.1em] text-white/75">Informação e acesso</span>
-          </span>
-        </Link>
-        <nav aria-label="Navegação principal" className="ml-auto hidden min-h-16 items-center gap-4 lg:flex xl:gap-6">
-          {navigation.map((item) => <Link key={item.href} href={item.href} className="whitespace-nowrap py-5 text-xs font-semibold text-white/90 transition-colors hover:text-turquoise xl:text-sm">{item.label}</Link>)}
-          <Link href="/acesso" className="inline-flex min-h-10 items-center gap-2 bg-turquoise px-4 text-sm font-bold text-navy transition-colors hover:bg-turquoise/90">
-            <LogIn className="h-4 w-4" aria-hidden="true" />
-            Acesso
-          </Link>
-        </nav>
-        <details className="group ml-auto lg:hidden">
-          <summary className="flex min-h-14 cursor-pointer list-none items-center gap-3 text-sm font-semibold uppercase tracking-wider text-white/80 [&::-webkit-details-marker]:hidden">
-            <span className="hidden sm:inline">Menu principal</span>
-            <span className="grid h-11 w-11 place-items-center text-white" aria-label="Alternar menu principal"><Menu className="h-7 w-7" aria-hidden="true" /></span>
-          </summary>
-          <nav aria-label="Navegação móvel" className="absolute left-0 right-0 z-20 border-t border-white/15 bg-navy px-5 pb-4 md:px-8">
-            {navigation.map((item) => <Link key={item.href} href={item.href} className="block py-3 text-base font-semibold text-white/90 transition-colors hover:text-turquoise">{item.label}</Link>)}
-            <Link href="/acesso" className="mt-2 inline-flex min-h-11 items-center gap-2 bg-turquoise px-4 text-sm font-bold text-navy">
-              <LogIn className="h-4 w-4" aria-hidden="true" />
-              Acesso
-            </Link>
-          </nav>
-        </details>
-      </div>
-    </header>
-  );
+  return <header className="sticky top-0 z-40 border-b border-border/70 bg-background/90 backdrop-blur-md"><div className="mx-auto flex min-h-18 max-w-7xl items-center justify-between gap-6 px-5 py-3 lg:px-8"><PortalLogo /><nav aria-label="Navegação principal" className="hidden items-center gap-1 lg:flex">{navigation.map((item) => <Link key={item.href} href={item.href} className="rounded-full px-3 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:bg-muted hover:text-ink xl:px-3.5">{item.label}</Link>)}</nav><div className="flex items-center gap-2"><Link href="/acesso" className="hidden items-center gap-2 rounded-full bg-coral px-4 py-2.5 text-sm font-bold text-white shadow-[var(--shadow-coral)] transition-transform hover:-translate-y-0.5 sm:inline-flex"><LogIn className="h-4 w-4" /> Acessar</Link><details className="group relative lg:hidden"><summary className="grid h-11 w-11 cursor-pointer list-none place-items-center rounded-full text-ink hover:bg-muted [&::-webkit-details-marker]:hidden" aria-label="Abrir menu"><Menu className="h-5 w-5" /></summary><nav aria-label="Navegação móvel" className="absolute right-0 top-14 w-72 rounded-2xl border border-border bg-card p-3 shadow-lift">{navigation.map((item) => <Link key={item.href} href={item.href} className="block rounded-xl px-4 py-3 font-semibold hover:bg-teal-soft">{item.label}</Link>)}<Link href="/acesso" className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-coral px-4 py-3 font-bold text-white"><LogIn className="h-4 w-4" /> Acessar</Link></nav></details></div></div></header>;
 }

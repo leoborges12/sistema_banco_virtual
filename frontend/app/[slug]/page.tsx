@@ -1,50 +1,17 @@
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowRight, ExternalLink, Info } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { PageHero } from '@/components/layout/page-hero';
 import { PortalFooter } from '@/components/layout/portal-footer';
 import { PortalHeader } from '@/components/layout/portal-header';
 import { findPortalArea, portalAreas } from '@/data/portal-areas';
 
-export function generateStaticParams() {
-  return portalAreas.map(({ slug }) => ({ slug }));
-}
+export function generateStaticParams() { return portalAreas.map(({ slug }) => ({ slug })); }
 
 export default async function AreaPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const area = findPortalArea(slug);
   if (!area) notFound();
-
-  return (
-    <div className="min-h-screen bg-background text-foreground">
-      <PortalHeader />
-      <main>
-        <section className="bg-primary text-primary-foreground">
-          <div className="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-16">
-            <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-white/90 underline underline-offset-4"><ArrowLeft className="h-4 w-4" /> Página inicial</Link>
-            <p className="mt-9 text-sm font-semibold uppercase tracking-[0.17em] text-white/80">Área do portal</p>
-            <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">{area.title}</h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-white/90">{area.description}</p>
-          </div>
-        </section>
-
-        <article className="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-16">
-          <h2 className="text-3xl font-semibold tracking-tight">Sobre esta área</h2>
-          <p className="mt-5 max-w-4xl text-lg leading-8 text-muted-foreground">{area.introduction}</p>
-
-          <section aria-labelledby="contents-title" className="mt-12">
-            <h2 id="contents-title" className="text-3xl font-semibold tracking-tight">Conteúdos e serviços</h2>
-            <div className="mt-7 divide-y divide-border border-y border-border">
-              {area.topics.map((topic, index) => {
-                const content = <><span className="grid h-11 w-11 shrink-0 place-items-center bg-primary text-sm font-bold text-primary-foreground">0{index + 1}</span><span className="min-w-0 flex-1"><span className="block text-xl font-semibold">{topic.title}</span><span className="mt-2 block leading-7 text-muted-foreground">{topic.description}</span></span>{topic.href && <ArrowRight className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />}</>;
-                return topic.external && topic.href ? <a key={topic.title} href={topic.href} target="_blank" rel="noreferrer" className="flex items-center gap-5 py-6 transition-colors hover:bg-secondary focus-visible:bg-secondary sm:px-4">{content}</a> : topic.href ? <Link key={topic.title} href={topic.href} className="flex items-center gap-5 py-6 transition-colors hover:bg-secondary focus-visible:bg-secondary sm:px-4">{content}</Link> : <div key={topic.title} className="flex items-center gap-5 py-6 sm:px-4">{content}</div>;
-              })}
-            </div>
-          </section>
-
-          <aside className="mt-12 border-l-4 border-turquoise bg-secondary px-6 py-5"><p className="font-semibold">Conteúdo em preparação</p><p className="mt-2 leading-7 text-muted-foreground">Os dados oficiais desta área serão publicados após validação da instituição responsável.</p></aside>
-        </article>
-      </main>
-      <PortalFooter />
-    </div>
-  );
+  const tones = ['bg-teal-soft text-teal', 'bg-coral-soft text-coral', 'bg-amber-soft text-ink', 'bg-sky-soft text-sky'];
+  return <div className="flex min-h-screen flex-col"><PortalHeader /><main className="flex-1"><PageHero eyebrow="Área do portal" title={area.title} description={area.description} backHref="/" backLabel="Página inicial" /><article className="mx-auto max-w-7xl px-5 py-16 lg:px-8"><div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]"><section><p className="eyebrow text-teal">Conheça esta área</p><h2 className="mt-3 text-3xl font-bold">Informação organizada para facilitar seu acesso.</h2><p className="mt-5 text-lg leading-8 text-muted-foreground">{area.introduction}</p><aside className="mt-8 rounded-2xl bg-teal-soft p-5"><div className="flex gap-3"><Info className="mt-0.5 h-5 w-5 shrink-0 text-teal" /><div><p className="font-bold">Validação institucional</p><p className="mt-1 text-sm leading-6 text-muted-foreground">Os dados oficiais serão publicados após validação da instituição responsável.</p></div></div></aside></section><section aria-labelledby="contents-title"><p className="eyebrow text-coral">Conteúdos e serviços</p><h2 id="contents-title" className="mt-3 text-3xl font-bold">Explore as opções</h2><div className="mt-7 grid gap-4">{area.topics.map((topic, index) => { const content = <><span className={`grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-sm font-extrabold ${tones[index % tones.length]}`}>0{index + 1}</span><span className="min-w-0 flex-1"><span className="block text-lg font-bold">{topic.title}</span><span className="mt-1 block text-sm leading-6 text-muted-foreground">{topic.description}</span></span>{topic.href && (topic.external ? <ExternalLink className="h-5 w-5 shrink-0 text-teal" /> : <ArrowRight className="h-5 w-5 shrink-0 text-teal" />)}</>; const cls = 'card-lift flex items-center gap-5 p-5'; return topic.external && topic.href ? <a key={topic.title} href={topic.href} target="_blank" rel="noreferrer" className={cls}>{content}</a> : topic.href ? <Link key={topic.title} href={topic.href} className={cls}>{content}</Link> : <div key={topic.title} className={cls}>{content}</div>; })}</div></section></div></article></main><PortalFooter /></div>;
 }

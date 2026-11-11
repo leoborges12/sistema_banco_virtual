@@ -1,33 +1,8 @@
-import { ArrowLeft, LockKeyhole } from 'lucide-react';
+import { ArrowLeft, FileLock2, LockKeyhole, ShieldCheck } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
-import { PortalFooter } from '@/components/layout/portal-footer';
-import { PortalHeader } from '@/components/layout/portal-header';
+import { PortalLogo } from '@/components/layout/portal-logo';
 
 export default function AccessPage() {
-  return (
-    <div className="min-h-screen bg-background text-foreground">
-      <PortalHeader />
-      <main>
-        <section className="bg-primary text-primary-foreground">
-          <div className="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-16">
-            <p className="text-sm font-semibold uppercase tracking-[0.17em] text-white/80">Portal de Saúde</p>
-            <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">Acesso</h1>
-          </div>
-        </section>
-        <section className="mx-auto max-w-5xl px-5 py-12 md:px-8 md:py-16">
-          <div className="flex max-w-3xl items-start gap-5">
-            <span className="grid h-12 w-12 shrink-0 place-items-center bg-ice text-turquoise">
-              <LockKeyhole className="h-6 w-6" aria-hidden="true" />
-            </span>
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight">Acesso a documentos privados</h2>
-              <p className="mt-4 leading-7 text-muted-foreground">A criação de contas e o acesso restrito serão disponibilizados em uma próxima etapa. No momento, esta área ainda não requer login.</p>
-              <Link href="/" className="mt-6 inline-flex items-center gap-2 font-semibold text-institutional underline decoration-2 underline-offset-4"><ArrowLeft className="h-4 w-4" aria-hidden="true" />Voltar ao início</Link>
-            </div>
-          </div>
-        </section>
-      </main>
-      <PortalFooter />
-    </div>
-  );
+  return <div className="grid min-h-screen lg:grid-cols-[1.05fr_1fr]"><aside className="relative hidden overflow-hidden bg-ink text-white lg:block"><Image src="/images/cabecalho.jpg" alt="Fachada do Theatro Prezewodowski, em Itaqui" fill priority sizes="55vw" className="object-cover opacity-50 grayscale" /><div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/30" /><div className="relative flex h-full flex-col justify-between p-12"><PortalLogo light /><div className="max-w-md animate-rise"><p className="eyebrow text-amber">Área de acesso</p><h1 className="mt-3 text-4xl font-extrabold leading-tight">Conteúdo protegido, <span className="text-teal">acesso responsável.</span></h1><div className="mt-9 space-y-4"><div className="flex items-center gap-4 rounded-2xl bg-white/5 p-4 ring-1 ring-white/10 backdrop-blur"><span className="grid h-11 w-11 place-items-center rounded-xl bg-teal text-white"><FileLock2 className="h-5 w-5" /></span><div><p className="font-bold">Documentos restritos</p><p className="text-sm text-ink-muted">Acesso destinado a perfis autorizados.</p></div></div><div className="flex items-center gap-4 rounded-2xl bg-white/5 p-4 ring-1 ring-white/10 backdrop-blur"><span className="grid h-11 w-11 place-items-center rounded-xl bg-amber text-ink"><ShieldCheck className="h-5 w-5" /></span><div><p className="font-bold">Segurança institucional</p><p className="text-sm text-ink-muted">Autenticação será integrada em etapa futura.</p></div></div></div></div><p className="text-xs text-ink-muted">Portal de Saúde de Itaqui</p></div></aside><main className="flex flex-col bg-background"><div className="flex items-center justify-between p-6 lg:justify-end"><div className="lg:hidden"><PortalLogo /></div><Link href="/" className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-bold hover:bg-muted"><ArrowLeft className="h-4 w-4" /> Voltar ao início</Link></div><div className="flex flex-1 items-center justify-center px-6 pb-12"><div className="w-full max-w-md animate-rise"><span className="grid h-14 w-14 place-items-center rounded-2xl bg-coral-soft text-coral"><LockKeyhole className="h-7 w-7" /></span><p className="eyebrow mt-6 text-coral">Acesso restrito</p><h2 className="mt-2 text-3xl font-bold">Área em preparação</h2><p className="mt-4 leading-7 text-muted-foreground">A criação de contas e o acesso a documentos privados serão disponibilizados em uma próxima etapa. No momento, esta área ainda não possui autenticação ativa.</p><div className="mt-8 rounded-2xl bg-teal-soft p-5 text-sm leading-6 text-muted-foreground"><strong className="block text-ink">Nenhuma credencial é solicitada.</strong> Quando a autenticação institucional estiver disponível, esta página será conectada ao serviço responsável.</div><Link href="/" className="mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 font-bold text-white"><ArrowLeft className="h-4 w-4" /> Retornar ao portal</Link></div></div></main></div>;
 }

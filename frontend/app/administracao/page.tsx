@@ -209,15 +209,15 @@ export default function AdministrationPage() {
 
   if (!authenticated) {
     return (
-      <main className="min-h-screen bg-[#eef5fa] px-5 py-10 text-navy md:py-16">
-        <div className="mx-auto grid max-w-5xl overflow-hidden border border-border bg-white shadow-sm md:grid-cols-[1.05fr_0.95fr]">
-          <section className="bg-primary p-8 text-white md:p-12">
+      <main className="min-h-screen bg-surface px-5 py-10 text-ink md:py-16">
+        <div className="mx-auto grid max-w-5xl overflow-hidden rounded-3xl border border-border bg-white shadow-lift md:grid-cols-[1.05fr_0.95fr]">
+          <section className="bg-gradient-ink p-8 text-white md:p-12">
             <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.16em] text-white/80">
               <ShieldCheck className="h-6 w-6" /> Área administrativa
             </div>
             <h1 className="mt-14 max-w-md text-4xl font-semibold leading-tight md:text-5xl">Gestão de conteúdo do Portal de Saúde</h1>
             <p className="mt-6 max-w-md leading-7 text-white/80">Protótipo funcional para validar o gerenciamento editorial antes da integração com autenticação institucional e banco de dados.</p>
-            <div className="mt-10 border-l-4 border-turquoise bg-white/10 p-4 text-sm leading-6">
+            <div className="mt-10 rounded-2xl border-l-4 border-amber bg-white/10 p-4 text-sm leading-6 backdrop-blur">
               <strong className="block text-white">Ambiente de demonstração</strong>
               Nenhum dado ou credencial real é utilizado. As alterações ficam somente neste navegador.
             </div>
@@ -225,7 +225,7 @@ export default function AdministrationPage() {
           <section className="p-8 md:p-12">
             <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-institutional hover:underline"><ArrowLeft className="h-4 w-4" /> Voltar ao portal</Link>
             <div className="mt-14">
-              <span className="grid h-12 w-12 place-items-center bg-ice text-institutional"><UserRound className="h-6 w-6" /></span>
+              <span className="grid h-12 w-12 place-items-center rounded-2xl bg-coral-soft text-coral"><UserRound className="h-6 w-6" /></span>
               <h2 className="mt-5 text-2xl font-semibold">Acesso demonstrativo</h2>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">Use qualquer e-mail em formato válido e uma senha fictícia de 6 caracteres ou mais.</p>
             </div>
@@ -239,7 +239,7 @@ export default function AdministrationPage() {
                 <input id="password" name="password" type="password" placeholder="Mínimo de 6 caracteres" className="mt-2 w-full border border-input px-3 py-3 outline-none focus:border-turquoise focus:ring-2 focus:ring-turquoise/20" />
               </div>
               {loginError && <p role="alert" className="flex gap-2 bg-red-50 p-3 text-sm text-red-700"><AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />{loginError}</p>}
-              <button type="submit" className="w-full bg-primary px-5 py-3 font-semibold text-white transition-colors hover:bg-navy">Entrar no protótipo</button>
+              <button type="submit" className="w-full rounded-full bg-coral px-5 py-3 font-bold text-white shadow-[var(--shadow-coral)] transition-transform hover:-translate-y-0.5">Entrar no protótipo</button>
             </form>
           </section>
         </div>
@@ -248,12 +248,12 @@ export default function AdministrationPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f3f7fa] text-navy">
-      <header className="border-b border-border bg-white">
+    <div className="min-h-screen bg-surface text-ink">
+      <header className="sticky top-0 z-30 border-b border-border bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-institutional">Portal de Saúde</p>
-            <p className="mt-1 font-semibold">Painel administrativo <span className="ml-2 bg-amber-100 px-2 py-1 text-xs text-amber-800">Protótipo</span></p>
+            <p className="eyebrow text-teal">Portal de Saúde</p>
+            <p className="mt-1 font-heading font-bold">Painel administrativo <span className="ml-2 rounded-full bg-amber-soft px-2.5 py-1 text-xs text-ink">Protótipo</span></p>
           </div>
           <button onClick={() => setAuthenticated(false)} className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-navy"><LogOut className="h-4 w-4" /> Sair</button>
         </div>
@@ -262,12 +262,12 @@ export default function AdministrationPage() {
       <div className="mx-auto grid max-w-7xl md:grid-cols-[230px_1fr]">
         <aside className="border-r border-border bg-white px-5 py-7 md:min-h-[calc(100vh-73px)]">
           <nav aria-label="Navegação administrativa" className="space-y-2">
-            <span className="flex items-center gap-3 bg-ice px-3 py-3 font-semibold text-institutional"><LayoutDashboard className="h-5 w-5" /> Visão geral</span>
-            <span className="flex items-center gap-3 border-l-4 border-turquoise px-3 py-3 font-semibold"><Newspaper className="h-5 w-5" /> Notícias</span>
+            <span className="flex items-center gap-3 rounded-xl bg-teal-soft px-3 py-3 font-semibold text-teal"><LayoutDashboard className="h-5 w-5" /> Visão geral</span>
+            <span className="flex items-center gap-3 rounded-xl border-l-4 border-coral bg-coral-soft px-3 py-3 font-semibold"><Newspaper className="h-5 w-5" /> Notícias</span>
             <span className="flex items-center gap-3 px-3 py-3 text-muted-foreground"><Megaphone className="h-5 w-5" /> Alertas <small className="ml-auto">Etapa 2</small></span>
             <span className="flex items-center gap-3 px-3 py-3 text-muted-foreground"><Link2 className="h-5 w-5" /> Links úteis <small className="ml-auto">Etapa 2</small></span>
           </nav>
-          <div className="mt-10 border border-border bg-slate-50 p-4 text-xs leading-5 text-muted-foreground">
+          <div className="mt-10 rounded-2xl border border-border bg-muted p-4 text-xs leading-5 text-muted-foreground">
             <strong className="block text-navy">Escopo atual: 50%</strong>
             RF12 e base de RF18/RN09. Alertas, destaques e links úteis entram na próxima etapa.
           </div>
@@ -280,17 +280,17 @@ export default function AdministrationPage() {
               <h1 className="mt-2 text-3xl font-semibold tracking-tight">Notícias e comunicados</h1>
               <p className="mt-2 text-muted-foreground">Cadastre, revise e publique conteúdos com identificação do responsável.</p>
             </div>
-            <button onClick={startCreate} className="inline-flex items-center justify-center gap-2 bg-primary px-5 py-3 font-semibold text-white hover:bg-navy"><Plus className="h-5 w-5" /> Nova notícia</button>
+            <button onClick={startCreate} className="inline-flex items-center justify-center gap-2 rounded-full bg-coral px-5 py-3 font-bold text-white shadow-[var(--shadow-coral)] hover:-translate-y-0.5"><Plus className="h-5 w-5" /> Nova notícia</button>
           </div>
 
           <section className="mt-8 grid gap-4 sm:grid-cols-3" aria-label="Resumo das notícias">
-            <div className="border border-border bg-white p-5"><CheckCircle2 className="h-5 w-5 text-emerald-600" /><p className="mt-5 text-3xl font-semibold">{totals.published}</p><p className="mt-1 text-sm text-muted-foreground">Publicadas</p></div>
-            <div className="border border-border bg-white p-5"><Clock3 className="h-5 w-5 text-amber-600" /><p className="mt-5 text-3xl font-semibold">{totals.review}</p><p className="mt-1 text-sm text-muted-foreground">Em revisão</p></div>
-            <div className="border border-border bg-white p-5"><FilePenLine className="h-5 w-5 text-slate-600" /><p className="mt-5 text-3xl font-semibold">{totals.draft}</p><p className="mt-1 text-sm text-muted-foreground">Rascunhos</p></div>
+            <div className="rounded-2xl border border-border bg-white p-5 shadow-soft"><CheckCircle2 className="h-5 w-5 text-teal" /><p className="mt-5 text-3xl font-semibold">{totals.published}</p><p className="mt-1 text-sm text-muted-foreground">Publicadas</p></div>
+            <div className="rounded-2xl border border-border bg-white p-5 shadow-soft"><Clock3 className="h-5 w-5 text-amber" /><p className="mt-5 text-3xl font-semibold">{totals.review}</p><p className="mt-1 text-sm text-muted-foreground">Em revisão</p></div>
+            <div className="rounded-2xl border border-border bg-white p-5 shadow-soft"><FilePenLine className="h-5 w-5 text-sky" /><p className="mt-5 text-3xl font-semibold">{totals.draft}</p><p className="mt-1 text-sm text-muted-foreground">Rascunhos</p></div>
           </section>
 
           {showForm && (
-            <section className="mt-8 border border-border bg-white" aria-labelledby="news-form-title">
+            <section className="mt-8 overflow-hidden rounded-3xl border border-border bg-white shadow-soft" aria-labelledby="news-form-title">
               <div className="flex items-center justify-between border-b border-border px-5 py-4 md:px-7">
                 <div><p className="text-xs font-bold uppercase tracking-[0.14em] text-institutional">Formulário editorial</p><h2 id="news-form-title" className="mt-1 text-xl font-semibold">{editingId ? 'Editar notícia' : 'Cadastrar notícia'}</h2></div>
                 <button onClick={() => setShowForm(false)} aria-label="Fechar formulário" className="p-2 text-muted-foreground hover:text-navy"><X className="h-5 w-5" /></button>
@@ -319,7 +319,7 @@ export default function AdministrationPage() {
                 </Field>
                 <div className="flex flex-wrap justify-end gap-3 border-t border-border pt-5 md:col-span-2">
                   <button type="button" onClick={() => setShowForm(false)} className="border border-input px-5 py-2.5 font-semibold hover:bg-slate-50">Cancelar</button>
-                  <button type="submit" className="inline-flex items-center gap-2 bg-primary px-5 py-2.5 font-semibold text-white hover:bg-navy"><Save className="h-4 w-4" /> Salvar conteúdo</button>
+                  <button type="submit" className="inline-flex items-center gap-2 rounded-full bg-coral px-5 py-2.5 font-semibold text-white"><Save className="h-4 w-4" /> Salvar conteúdo</button>
                 </div>
               </form>
             </section>
@@ -327,7 +327,7 @@ export default function AdministrationPage() {
 
           {feedback && <output className="mt-6 flex items-center gap-2 border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800"><CheckCircle2 className="h-5 w-5" />{feedback}</output>}
 
-          <section className="mt-8 overflow-hidden border border-border bg-white" aria-labelledby="content-list-title">
+          <section className="mt-8 overflow-hidden rounded-3xl border border-border bg-white shadow-soft" aria-labelledby="content-list-title">
             <div className="border-b border-border px-5 py-4 md:px-7"><h2 id="content-list-title" className="text-xl font-semibold">Conteúdos cadastrados</h2><p className="mt-1 text-sm text-muted-foreground">Dados simulados salvos localmente neste navegador.</p></div>
             <div className="divide-y divide-border">
               {news.map((item) => (

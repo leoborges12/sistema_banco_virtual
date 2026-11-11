@@ -1,73 +1,14 @@
-"use client";
+'use client';
 
-import React from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
-type NewsItem = {
-  id: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  image?: string;
-};
+type NewsItem = { id: string; title: string; excerpt: string; date: string; image?: string };
 
 export default function NewsCarousel({ items }: { items: NewsItem[] }) {
-  const [index, setIndex] = React.useState(0);
-
-  React.useEffect(() => {
-    if (!items || items.length === 0) return;
-    const t = setInterval(() => setIndex((i) => (i + 1) % items.length), 4000);
-    return () => clearInterval(t);
-  }, [items]);
-
-  if (!items || items.length === 0) return null;
-
-  return (
-    <div className="w-full">
-      <div className="relative rounded-md bg-white shadow overflow-hidden" style={{ minHeight: 180 }}>
-        {/* Slides (stacked) */}
-        {items.map((it, i) => (
-          <div
-            key={it.id}
-            className={`absolute inset-0 transition-opacity duration-700 ${i === index ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}>
-            <div className="w-full h-full flex flex-col md:flex-row">
-              <div className="md:w-2/5 h-44 md:h-72 relative">
-                {it.image ? (
-                  <Image src={it.image} alt={it.title} fill sizes="(min-width: 768px) 40vw, 100vw" className="object-cover" />
-                ) : (
-                  <div className="w-full h-full bg-ice" />
-                )}
-              </div>
-
-              <div className="p-6 md:w-3/5 flex flex-col justify-center">
-                <div className="text-xs text-muted-foreground">{it.date}</div>
-                <h3 className="mt-2 text-2xl font-semibold">{it.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground">{it.excerpt}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-
-        {/* Controls */}
-        <div className="absolute left-4 top-1/2 -translate-y-1/2">
-          <button onClick={() => setIndex((i) => (i - 1 + items.length) % items.length)} className="rounded-full bg-white/90 p-2 shadow">◀</button>
-        </div>
-        <div className="absolute right-4 top-1/2 -translate-y-1/2">
-          <button onClick={() => setIndex((i) => (i + 1) % items.length)} className="rounded-full bg-white/90 p-2 shadow">▶</button>
-        </div>
-
-        {/* Indicators */}
-        <div className="absolute left-1/2 bottom-4 -translate-x-1/2 flex gap-2">
-          {items.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setIndex(i)}
-              aria-label={`Ir para notícia ${i + 1}`}
-              className={`h-3 w-6 rounded ${i === index ? 'bg-turquoise' : 'bg-white/70'}`}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+  const [index, setIndex] = useState(0);
+  useEffect(() => { if (items.length === 0) return; const timer = window.setInterval(() => setIndex((current) => (current + 1) % items.length), 5000); return () => window.clearInterval(timer); }, [items]);
+  if (items.length === 0) return null;
+  return <div className="relative min-h-[25rem] overflow-hidden rounded-3xl bg-ink shadow-lift md:min-h-80">{items.map((item, itemIndex) => <article key={item.id} aria-hidden={itemIndex !== index} className={`absolute inset-0 grid transition-opacity duration-700 md:grid-cols-[0.9fr_1.1fr] ${itemIndex === index ? 'z-10 opacity-100' : 'pointer-events-none opacity-0'}`}><div className="relative min-h-48"><Image src={item.image ?? '/images/cabecalho.jpg'} alt="" fill sizes="(min-width: 768px) 45vw, 100vw" className="object-cover" /></div><div className="flex flex-col justify-center p-8 text-white md:p-10"><p className="eyebrow text-amber">Destaque · {item.date}</p><h2 className="mt-3 text-3xl font-bold">{item.title}</h2><p className="mt-4 max-w-xl leading-7 text-ink-muted">{item.excerpt}</p></div></article>)}<div className="absolute bottom-5 right-5 z-20 flex gap-2"><button onClick={() => setIndex((current) => (current - 1 + items.length) % items.length)} aria-label="Notícia anterior" className="grid h-11 w-11 place-items-center rounded-full bg-white text-ink shadow-soft"><ChevronLeft className="h-5 w-5" /></button><button onClick={() => setIndex((current) => (current + 1) % items.length)} aria-label="Próxima notícia" className="grid h-11 w-11 place-items-center rounded-full bg-coral text-white shadow-soft"><ChevronRight className="h-5 w-5" /></button></div><div className="absolute bottom-6 left-8 z-20 flex gap-2">{items.map((item, itemIndex) => <button key={item.id} onClick={() => setIndex(itemIndex)} aria-label={`Ir para notícia ${itemIndex + 1}`} className={`h-2.5 rounded-full transition-all ${itemIndex === index ? 'w-8 bg-teal' : 'w-2.5 bg-white/50'}`} />)}</div></div>;
 }

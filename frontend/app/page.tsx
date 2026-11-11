@@ -1,104 +1,30 @@
-import { ArrowRight, FileText, FlaskConical, HeartHandshake, Link2, MapPinned, Newspaper, Stethoscope } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Clock, FileText, HeartPulse, Link2, MapPin, Megaphone, Newspaper, Pill, Stethoscope, Syringe } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PortalFooter } from '@/components/layout/portal-footer';
 import { PortalHeader } from '@/components/layout/portal-header';
+import { PortalSearch } from '@/components/sections/portal-search';
 import { portalAreas } from '@/data/portal-areas';
 
-const areaIcons = {
-  map: MapPinned,
-  exam: FlaskConical,
-  health: Stethoscope,
-  document: FileText,
-  news: Newspaper,
-  links: Link2,
-};
-
+const areaIcons = { map: MapPin, exam: Stethoscope, health: Stethoscope, document: FileText, news: Newspaper, links: Link2 };
+const tones = [
+  { bar: 'bg-teal', soft: 'bg-teal-soft', text: 'text-teal' },
+  { bar: 'bg-coral', soft: 'bg-coral-soft', text: 'text-coral' },
+  { bar: 'bg-amber', soft: 'bg-amber-soft', text: 'text-ink' },
+  { bar: 'bg-sky', soft: 'bg-sky-soft', text: 'text-sky' },
+  { bar: 'bg-ink', soft: 'bg-muted', text: 'text-ink' },
+];
 const featuredNews = [
-  { title: 'Campanha de vacinação contra a gripe', excerpt: 'Vacinação em todas as ESFs entre 10 e 20 de abril. Procure a sua unidade de referência.', date: '10/04/2026', image: '/images/news/vacina.png', imageAlt: 'Ilustração fictícia de vacinação' },
-  { title: 'Nova rotina de entrega de medicamentos', excerpt: 'A partir da próxima semana, medicamentos de uso contínuo terão retirada agendada.', date: '05/04/2026', image: '/images/news/medicamento.png', imageAlt: 'Ilustração fictícia de medicamentos' },
+  { title: 'Campanha de vacinação contra a gripe', excerpt: 'Vacinação em todas as ESFs entre 10 e 20 de abril. Procure a sua unidade de referência.', date: '10/04/2026', icon: Syringe, tone: 'bg-coral text-white', badge: 'Vacinação', badgeTone: 'bg-coral-soft text-coral' },
+  { title: 'Nova rotina de entrega de medicamentos', excerpt: 'A partir da próxima semana, medicamentos de uso contínuo terão retirada agendada.', date: '05/04/2026', icon: Pill, tone: 'bg-teal text-white', badge: 'Medicamentos', badgeTone: 'bg-teal-soft text-teal' },
+  { title: 'Cuidados importantes nos dias mais quentes', excerpt: 'Confira orientações para proteger crianças e idosos durante períodos de calor intenso.', date: '01/04/2026', icon: Megaphone, tone: 'bg-amber text-ink', badge: 'Aviso', badgeTone: 'bg-amber-soft text-ink' },
 ];
 
 export default function Home() {
-  return (
-    <div className="min-h-screen bg-background text-foreground">
-      <PortalHeader />
-      <section aria-label="Cabeçalho do Portal de Saúde" className="relative h-[clamp(180px,28vw,320px)] overflow-hidden bg-navy">
-        <Image src="/images/cabecalho.jpg" alt="Fachada do Theatro Prezewodowski, em Itaqui" fill priority sizes="100vw" className="header-photo object-cover object-center" />
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-navy/20" />
-        <div className="header-copy absolute inset-x-0 bottom-0 mx-auto max-w-7xl px-5 pb-8 text-white md:px-8 md:pb-12">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-white/90">Itaqui, Rio Grande do Sul</p>
-          <h1 className="mt-2 text-3xl font-semibold sm:text-4xl md:text-5xl">Portal de Saúde</h1>
-        </div>
-      </section>
-      <main>
-        <section aria-labelledby="quick-access-title" className="border-t border-border bg-white">
-          <div className="mx-auto max-w-7xl px-5 py-8 md:px-8 md:py-10">
-            <div>
-              <h2 id="quick-access-title" className="text-2xl font-semibold tracking-tight">Acessos rápidos</h2>
-              <p className="mt-2 text-muted-foreground">Serviços e informações de saúde em um só lugar.</p>
-            </div>
-
-            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-              {portalAreas.map((area) => {
-                const Icon = areaIcons[area.icon];
-                return (
-                  <Link key={area.slug} href={`/${area.slug}`} className="group flex min-h-24 items-center gap-4 border-l-4 border-turquoise bg-ice px-4 py-4 text-navy transition-colors hover:bg-ice/70 focus-visible:bg-ice/70">
-                    <span className="grid h-11 w-11 shrink-0 place-items-center bg-white text-turquoise">
-                      <Icon className="h-6 w-6" strokeWidth={2} aria-hidden="true" />
-                    </span>
-                    <span className="text-sm font-semibold leading-5">{area.title}</span>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section aria-label="Informações do portal e notícias" className="border-t border-border bg-ice">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-10 md:px-8 md:py-14 lg:grid-cols-[0.9fr_1.1fr]">
-            <article>
-              <div className="flex items-start gap-4">
-                <span className="grid h-14 w-14 shrink-0 place-items-center bg-turquoise text-navy">
-                  <HeartHandshake className="h-10 w-10" strokeWidth={1.8} aria-hidden="true" />
-                </span>
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.15em] text-institutional">Portal de Saúde</p>
-                  <h2 className="mt-2 text-3xl font-semibold tracking-tight">Cuidar da sua saúde também é cuidar do futuro.</h2>
-                </div>
-              </div>
-              <p className="mt-5 max-w-xl leading-7 text-muted-foreground">Este portal foi criado para facilitar o acesso à informação e aos serviços de saúde de Itaqui.</p>
-              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-                <Link href="/sobre-o-portal" className="inline-flex min-h-11 items-center gap-2 bg-institutional px-4 font-semibold text-white transition-colors hover:bg-institutional/90">Sobre o portal <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
-                <Link href="/unidades-de-saude" className="inline-flex min-h-11 items-center gap-2 font-semibold text-institutional underline decoration-2 underline-offset-4">Conheça as unidades <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
-              </div>
-            </article>
-
-            <section aria-labelledby="featured-news-title">
-              <div className="flex items-end justify-between gap-4 border-b border-border pb-3">
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.15em] text-institutional">Fique por dentro</p>
-                  <h2 id="featured-news-title" className="mt-2 text-2xl font-semibold tracking-tight">Notícias principais</h2>
-                </div>
-                <Link href="/noticias" className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-institutional underline underline-offset-4">Todas <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
-              </div>
-              <div className="mt-5 divide-y divide-border">
-                {featuredNews.map((news) => (
-                  <article key={news.title} className="grid gap-4 py-5 sm:grid-cols-[8rem_1fr]">
-                    <Image src={news.image} alt={news.imageAlt} width={320} height={200} sizes="(max-width: 640px) 100vw, 160px" unoptimized className="aspect-[4/3] h-full max-h-32 w-full object-cover" />
-                    <div>
-                      <time className="text-xs font-medium text-muted-foreground">{news.date}</time>
-                      <h3 className="mt-1 text-lg font-semibold leading-6">{news.title}</h3>
-                      <p className="mt-2 text-sm leading-6 text-muted-foreground">{news.excerpt}</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </section>
-          </div>
-        </section>
-      </main>
-      <PortalFooter />
-    </div>
-  );
+  return <div className="flex min-h-screen flex-col bg-background text-foreground"><PortalHeader /><main className="flex-1">
+    <section className="relative overflow-hidden bg-gradient-ink text-white"><div className="absolute inset-0 bg-grid-ink [mask-image:radial-gradient(ellipse_at_top_left,black,transparent_70%)]" /><div className="absolute -left-24 top-1/2 h-96 w-96 rounded-full bg-teal/20 blur-3xl" /><div className="relative mx-auto grid max-w-7xl items-stretch gap-10 px-5 pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-12 lg:px-8 lg:pt-24"><div className="animate-rise pb-20 lg:pb-28"><span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold ring-1 ring-white/20"><span className="h-2 w-2 rounded-full bg-amber" /> Itaqui · Rio Grande do Sul</span><h1 className="mt-6 text-4xl font-extrabold leading-[1.05] sm:text-5xl lg:text-6xl">Saúde pública <span className="text-teal">mais perto</span> de você.</h1><p className="mt-6 max-w-lg text-lg leading-relaxed text-ink-muted">Serviços, unidades e informações de saúde da cidade reunidos em um só lugar.</p><PortalSearch /><div className="mt-6 flex flex-wrap gap-2 text-xs font-semibold"><span className="text-ink-muted">Mais buscados:</span>{['Vacinas', 'ESF mais próxima', 'Documentos'].map((term) => <span key={term} className="rounded-full px-3 py-1 ring-1 ring-white/20">{term}</span>)}</div></div><figure className="relative m-0 min-h-80 animate-rise [animation-delay:150ms]"><div className="relative h-full min-h-80 overflow-hidden rounded-t-[2rem] shadow-lift ring-1 ring-white/15"><Image src="/images/cabecalho.jpg" alt="Fachada do Theatro Prezewodowski, em Itaqui" fill priority sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover object-center" /><div className="absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b from-ink via-ink/40 to-transparent" /><figcaption className="absolute right-5 top-5 rounded-full bg-ink/75 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] backdrop-blur"><span className="text-amber">Itaqui</span> · patrimônio e cuidado</figcaption></div></figure></div></section>
+    <div className="relative z-10 mx-auto -mt-12 max-w-7xl px-5 lg:px-8"><div className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border shadow-lift sm:grid-cols-3"><div className="flex items-center gap-4 bg-card p-5"><span className="grid h-12 w-12 place-items-center rounded-xl bg-coral-soft text-coral"><Syringe className="h-6 w-6" /></span><div><p className="eyebrow text-muted-foreground">Campanhas</p><p className="mt-1 text-sm font-bold">Informações de vacinação</p></div></div><div className="flex items-center gap-4 bg-card p-5"><span className="grid h-12 w-12 place-items-center rounded-xl bg-amber-soft text-ink"><MapPin className="h-6 w-6" /></span><div><p className="eyebrow text-muted-foreground">Rede municipal</p><p className="mt-1 text-sm font-bold">Encontre sua unidade</p></div></div><div className="flex items-center gap-4 bg-card p-5"><span className="grid h-12 w-12 place-items-center rounded-xl bg-teal-soft text-teal"><Clock className="h-6 w-6" /></span><div><p className="eyebrow text-muted-foreground">Acesso rápido</p><p className="mt-1 text-sm font-bold">Serviços em um só lugar</p></div></div></div></div>
+    <section className="mx-auto max-w-7xl px-5 pb-20 pt-16 lg:px-8"><div className="flex flex-wrap items-end justify-between gap-4"><div><p className="eyebrow text-teal">Acessos rápidos</p><h2 className="mt-2 text-3xl font-bold sm:text-4xl">O que você precisa hoje?</h2></div><p className="max-w-sm text-muted-foreground">Acesse as áreas do portal de forma simples e direta.</p></div><div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">{portalAreas.map((area, index) => { const Icon = areaIcons[area.icon]; const tone = tones[index % tones.length]; return <Link key={area.slug} href={`/${area.slug}`} className="card-lift group relative flex flex-col overflow-hidden p-6"><span className={`absolute inset-x-0 top-0 h-1.5 ${tone.bar}`} /><span className={`grid h-14 w-14 place-items-center rounded-2xl ${tone.soft} ${tone.text} transition-transform group-hover:scale-110`}><Icon className="h-7 w-7" /></span><h3 className="mt-6 text-base font-bold leading-snug">{area.title}</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">{area.description}</p><span className={`mt-auto inline-flex items-center gap-1 pt-6 text-sm font-bold ${tone.text}`}>Acessar <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span></Link>; })}</div></section>
+    <section className="bg-surface"><div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 lg:grid-cols-[1fr_1.3fr] lg:px-8"><div><span className="grid h-14 w-14 place-items-center rounded-2xl bg-coral text-white shadow-[var(--shadow-coral)]"><HeartPulse className="h-7 w-7" /></span><p className="eyebrow mt-6 text-coral">Portal de Saúde</p><h2 className="mt-2 text-3xl font-bold leading-tight sm:text-4xl">Cuidar da sua saúde também é cuidar do futuro.</h2><p className="mt-5 leading-7 text-muted-foreground">Este portal foi criado para facilitar o acesso da população de Itaqui a informações e serviços de saúde.</p><div className="mt-8 flex flex-wrap gap-3"><Link href="/sobre-o-portal" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 font-bold text-white">Sobre o portal <ArrowRight className="h-4 w-4" /></Link><Link href="/unidades-de-saude" className="inline-flex items-center rounded-full border border-border bg-white px-5 py-3 font-bold">Conheça as unidades</Link></div></div><div><div className="flex items-end justify-between"><div><p className="eyebrow text-sky">Fique por dentro</p><h2 className="mt-2 text-2xl font-bold">Notícias principais</h2></div><Link href="/noticias" className="inline-flex items-center gap-1 text-sm font-bold hover:text-coral">Ver todas <ArrowUpRight className="h-4 w-4" /></Link></div><div className="mt-6 space-y-4">{featuredNews.map((news) => <article key={news.title} className="card-lift group flex gap-5 p-5"><span className={`grid h-20 w-20 shrink-0 place-items-center rounded-2xl ${news.tone}`}><news.icon className="h-8 w-8" /></span><div><div className="flex flex-wrap items-center gap-2 text-xs font-semibold"><span className={`rounded-full px-2.5 py-1 ${news.badgeTone}`}>{news.badge}</span><time className="text-muted-foreground">{news.date}</time></div><h3 className="mt-2 text-lg font-bold leading-snug">{news.title}</h3><p className="mt-1 text-sm leading-6 text-muted-foreground">{news.excerpt}</p></div></article>)}</div></div></div></section>
+  </main><PortalFooter /></div>;
 }
