@@ -8,6 +8,7 @@ const navigation = [
   { label: 'Documentação', href: '/documentacao' },
   { label: 'Notícias', href: '/noticias' },
   { label: 'Links Úteis', href: '/links-uteis' },
+  { label: 'Administração', href: '/administracao' },
 ];
 
 export function PortalHeader() {
